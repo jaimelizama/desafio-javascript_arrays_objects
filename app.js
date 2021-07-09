@@ -182,15 +182,9 @@ document.write(
 //   document.write(paciente.prevision);
 // });
 
-// Para ver cómo hacer un forEach que recorra los array y objects
-const Pacientes = [
-  PacientesRadiologia,
-  PacientesTraumatologia,
-  PacientesDental,
-];
+// Creando Tabla de forma inicial
 
-// Creando Tabla
-
+/*
 function printTable() {
   let table = `
     <table>
@@ -246,6 +240,65 @@ function printTable() {
 
 printTable();
 
+*/
+
+// Creando variable para revisar el listado de cada atención
+const Pacientes = [
+  PacientesRadiologia,
+  PacientesTraumatologia,
+  PacientesDental,
+];
+
+// Ejemplo de visualización de Pacientes y todos sus objetos y propiedades
 Pacientes.forEach((element) => {
   console.log(JSON.stringify(element));
 });
+
+console.log(Pacientes); // devuelve los array en cada posición
+
+const keys = Object.keys(Pacientes);
+console.log(keys);
+
+const values = Object.values(Pacientes);
+console.log(values);
+
+// Aplanando el arreglo de Pacientes
+const ListadoPacientes = Pacientes.flat();
+console.log(ListadoPacientes);
+
+// Creando la tabla con ListadoPacientes
+
+function printTable2() {
+  let table = `
+    <table>
+      <thead>
+        <tr>
+          <th>Hora</th>
+          <th>Especialista</th>
+          <th>Paciente</th>
+          <th>RUT</th>
+          <th>Previsión</th>
+        <tr>
+      </thead>
+      <tbody>
+  `;
+
+  ListadoPacientes.forEach((listado) => {
+    table += `
+      <tr>
+        <td>${listado.hora}</td>
+        <td>${listado.especialista}</td>
+        <td>${listado.paciente}</td>
+        <td>${listado.rut}</td>
+        <td>${listado.prevision}</td>
+      </tr>`;
+  });
+  table += `
+  </tbody>
+</table>
+`;
+
+  document.write(table);
+}
+
+printTable2();
